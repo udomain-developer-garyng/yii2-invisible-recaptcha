@@ -47,8 +47,12 @@ class InvisibleRecaptchaWidget extends InputWidget
 var recaptchaCallback_{$callbackRandomString} = function() {
     $('#{$inputId}').val($('#{$recaptchaId}').val());
     $('#{$formId}').submit();
+    grecaptcha.reset();
 }
-grecaptcha.render('recaptchaButton{$callbackRandomString}'); // this helps to ajax form refresh
+
+window.onloadCallback = function() {
+  grecaptcha.render('recaptchaButton{$callbackRandomString}');
+}
 JS
             );
     }
